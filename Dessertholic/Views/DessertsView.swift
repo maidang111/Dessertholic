@@ -24,7 +24,7 @@ struct DessertsView: View {
                     }
 
                 }.onAppear{
-                    DessertData.fetchDesserts()
+                    DessertData.fetchDessertsList()
             }
             .navigationTitle("Desserts")
         }

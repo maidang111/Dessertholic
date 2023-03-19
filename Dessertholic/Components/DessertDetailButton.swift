@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DessertDetailButton: View {
-    var dessertItem : dessert
+    var dessertItem : DessertItem
     var body: some View {
         ZStack{
             Rectangle()

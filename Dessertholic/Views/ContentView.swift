@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var DessertData = APIManager()
     var body: some View {
-        DessertsView()        
+        DessertsView()
     }
 }
 

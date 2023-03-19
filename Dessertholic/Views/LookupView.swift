@@ -10,7 +10,7 @@ import SwiftUI
 struct LookupView: View {
     @State var showingDetail : Bool = false
     @StateObject var DessertData = APIManager()
-    var dessertItem : dessert
+    var dessertItem : DessertItem
     var body: some View {
         VStack {
             ScrollView{
@@ -34,11 +34,9 @@ struct LookupView: View {
                         .font(.title)
                         .italic()
                         .padding([.top, .leading, .trailing])
-                    RowView(isSelected: false, ingredient: "Milk", measurement: "200ml")
-                    RowView(isSelected: false, ingredient: "Oil", measurement: "60ml")
-                    RowView(isSelected: false, ingredient: "Eggs", measurement: "2")
-                    RowView(isSelected: false, ingredient: "Flour", measurement: "1600g")
-                    RowView(isSelected: false, ingredient: "Baking Powder", measurement: "3 tsp")
+                    ForEach(dessert.getPresentIngredients(), id: \.self) { item in
+                        RowView(isSelected: false, ingredient: item.label, measurement: item.measurement)
+                    }
                     Text("------------------")
                         .padding(.top)
                         .font(.title)
@@ -53,12 +51,12 @@ struct LookupView: View {
                         .cornerRadius(10)
                         .sheet(isPresented: $showingDetail) {
                             InstructionView(dessert : dessert)
-                                }
-                    }
+                        }
+                }
             }
             .onAppear{
                 DessertData.fetchDessertInfo(dessertID: dessertItem.idMeal)
-        }
+            }
         }
     }
 }
