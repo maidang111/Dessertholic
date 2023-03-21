@@ -61,3 +61,10 @@ struct LookupView: View {
         }
     }
 }
+
+struct LookupView_Previews: PreviewProvider {
+    static var previews: some View {
+        LookupView(dessertID: "53049")
+    }
+}
+

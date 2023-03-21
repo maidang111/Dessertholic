@@ -23,3 +23,10 @@ struct InstructionView: View {
         }
     }
 }
+
+struct InstructionView_Previews: PreviewProvider {
+    static var previews: some View {
+        InstructionView(dessert: expectedDessertDetail)
+    }
+}
+

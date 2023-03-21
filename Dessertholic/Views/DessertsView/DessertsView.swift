@@ -15,6 +15,7 @@ struct DessertsView: View {
                 ForEach(dessertViewModel.dessertItemArr, id: \.self){ dessert in
                     NavigationLink {
                         LookupView(dessertID: dessert.idMeal)
+                            .navigationBarTitle(dessert.strMeal, displayMode: .inline)
                     } label: {
                         DessertDetailButton(dessertItem: dessert)
                     }
@@ -27,3 +28,10 @@ struct DessertsView: View {
         }
     }
 }
+
+struct DessertsView_Previews: PreviewProvider {
+    static var previews: some View {
+        DessertsView()
+    }
+}
+
