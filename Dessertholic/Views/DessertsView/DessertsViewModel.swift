@@ -7,13 +7,21 @@
 
 import Foundation
 
-//final class DessertViewModel : ObservableObject {
-//    @Published var dessertItemArr : [DessertItem] = []
-//    @Published var dessertDetailArr : [DessertDetail] = []
-//    @Published private(set) var isLoading : Bool = false
-//
-//    func fetchDessertItemsArr() {
-//        isLoading = true
-//        APIManager.fetchDessertInfo(APIManager)
-//    }
-//}
+final class DessertViewModel : ObservableObject {
+    //stores DessertItem fetchedfrom NetworkManager
+    @Published var dessertItemArr : [DessertItem] = []
+    @Published private(set) var isLoading : Bool = false
+    
+    func fetchDessertItemsArr() {
+        isLoading = true
+        NetworkManager.shared.fetchDessertItemsArr { status, dessertItem in
+            switch status {
+            case status :
+                self.dessertItemArr = dessertItem
+                print(self.dessertItemArr)
+            default : print("couldn't fetch dessertItemArray")
+            }
+        }
+        isLoading = false
+    }
+}

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RowView: View {
     @State var ingredient : Ingredient
-    
     init(ingredient : Ingredient) {
         self.ingredient = ingredient
     }

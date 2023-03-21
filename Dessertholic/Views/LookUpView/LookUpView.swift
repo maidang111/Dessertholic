@@ -8,29 +8,28 @@
 import SwiftUI
 
 struct LookupView: View {
+    let dessertID : String
     @State var showingDetail : Bool = false
-    @StateObject var DessertData = APIManager()
-    var dessertItem : DessertItem
+    @StateObject var lookUpViewModel = LookUpViewModel()
+    
     var body: some View {
         VStack {
             ScrollView{
-                AsyncImage(url: URL(string: dessertItem.strMealThumb)) {
-                    image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 300, height: 300)
-                        .cornerRadius(10)
-                        .padding(.top, 25)
-                } placeholder: {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 300, height: 300)
-                        .cornerRadius(10)
-                }
-
-                ForEach(DessertData.dessertDetailArr, id: \.self){ dessert in
+                ForEach(lookUpViewModel.dessertDetailsArray, id: \.self){ dessert in
+                    AsyncImage(url: URL(string: dessert.strMealThumb)) {
+                        image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300, height: 300)
+                            .cornerRadius(10)
+                    } placeholder: {
+                        Image(systemName: "photo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300, height: 300)
+                            .cornerRadius(10)
+                    }
                     Text("---Ingredients---")
                         .multilineTextAlignment(.center)
                         .font(.title)
@@ -57,7 +56,7 @@ struct LookupView: View {
                 }
             }
             .onAppear{
-                DessertData.fetchDessertInfo(dessertID: dessertItem.idMeal) {(status) in }
+                lookUpViewModel.fetchDessertDetailsArr(dessertID: self.dessertID)
             }
         }
     }
