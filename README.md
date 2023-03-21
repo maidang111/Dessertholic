@@ -1,6 +1,6 @@
 ![Banner Image](Dessertholic_banner.png)
 ## Overview
-This is a mobile application that provides a collection of delicious dessert recipes for users to browse and try. The app is designed to be user-friendly and easy to navigate, allowing users to quickly find recipes that suit their preferences and cooking abilities.
+This is a mobile application that provides a collection of delicious dessert recipes for users to browse and try. The app is designed to be user-friendly and easy to navigate.
 
 ## Features
 * Interactive Ingredient List 
