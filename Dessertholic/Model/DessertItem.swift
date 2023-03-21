@@ -84,34 +84,34 @@ struct DessertDetail : Hashable, Codable {
     let strCreativeCommonsConfirmed: Bool?
     let dateModified: String?
     
-    private func getRawIngredients() -> [(String, String)] {
-        return [(strIngredient1, strMeasure1),
-                (strIngredient2, strMeasure2),
-                (strIngredient3, strMeasure3),
-                (strIngredient4, strMeasure4),
-                (strIngredient5, strMeasure5),
-                (strIngredient6, strMeasure6),
-                (strIngredient7, strMeasure7),
-                (strIngredient8, strMeasure8),
-                (strIngredient9, strMeasure9),
-                (strIngredient10, strMeasure10),
-                (strIngredient11, strMeasure11),
-                (strIngredient12, strMeasure12),
-                (strIngredient13, strMeasure13),
-                (strIngredient14, strMeasure14),
-                (strIngredient15, strMeasure15),
-                (strIngredient16, strMeasure16),
-                (strIngredient17, strMeasure17),
-                (strIngredient18, strMeasure18),
-                (strIngredient19, strMeasure19),
-                (strIngredient20, strMeasure20),
+    private func getRawIngredients() -> [(String, String, Bool)] {
+        return [(strIngredient1, strMeasure1, false),
+                (strIngredient2, strMeasure2, false),
+                (strIngredient3, strMeasure3, false),
+                (strIngredient4, strMeasure4, false),
+                (strIngredient5, strMeasure5, false),
+                (strIngredient6, strMeasure6, false),
+                (strIngredient7, strMeasure7, false),
+                (strIngredient8, strMeasure8, false),
+                (strIngredient9, strMeasure9, false),
+                (strIngredient10, strMeasure10, false),
+                (strIngredient11, strMeasure11, false),
+                (strIngredient12, strMeasure12, false),
+                (strIngredient13, strMeasure13, false),
+                (strIngredient14, strMeasure14, false),
+                (strIngredient15, strMeasure15, false),
+                (strIngredient16, strMeasure16, false),
+                (strIngredient17, strMeasure17, false),
+                (strIngredient18, strMeasure18, false),
+                (strIngredient19, strMeasure19, false),
+                (strIngredient20, strMeasure20, false),
         ]
     }
     
     func getPresentIngredients() -> [Ingredient] {
         return getRawIngredients()
             .filter{ $0.0 != "" && $0.1 != "" }
-            .map{Ingredient(label: $0.0, measurement: $0.1)}
+            .map{Ingredient(label: $0.0, measurement: $0.1, isSelected: $0.2)}
     }
 }
 
@@ -119,4 +119,5 @@ struct DessertDetail : Hashable, Codable {
 struct Ingredient : Hashable, Codable {
     var label : String
     var measurement : String
+    var isSelected : Bool
 }

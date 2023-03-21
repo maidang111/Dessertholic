@@ -21,6 +21,7 @@ struct LookupView: View {
                         .scaledToFit()
                         .frame(width: 300, height: 300)
                         .cornerRadius(10)
+                        .padding(.top, 25)
                 } placeholder: {
                     Image(systemName: "photo")
                         .resizable()
@@ -28,14 +29,15 @@ struct LookupView: View {
                         .frame(width: 300, height: 300)
                         .cornerRadius(10)
                 }
-                ForEach(DessertData.Details, id: \.self){ dessert in
+
+                ForEach(DessertData.dessertDetailArr, id: \.self){ dessert in
                     Text("---Ingredients---")
                         .multilineTextAlignment(.center)
                         .font(.title)
                         .italic()
                         .padding([.top, .leading, .trailing])
                     ForEach(dessert.getPresentIngredients(), id: \.self) { item in
-                        RowView(isSelected: false, ingredient: item.label, measurement: item.measurement)
+                        RowView(ingredient: item)
                     }
                     Text("------------------")
                         .padding(.top)
@@ -55,7 +57,7 @@ struct LookupView: View {
                 }
             }
             .onAppear{
-                DessertData.fetchDessertInfo(dessertID: dessertItem.idMeal)
+                DessertData.fetchDessertInfo(dessertID: dessertItem.idMeal) {(status) in }
             }
         }
     }

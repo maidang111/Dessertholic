@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct RowView: View {
-    @State var isSelected : Bool
-    var ingredient : String
-    var measurement : String
+    @State var ingredient : Ingredient
+    
+    init(ingredient : Ingredient) {
+        self.ingredient = ingredient
+    }
     var body: some View {
         HStack {
-            Image(systemName: isSelected ? "square.fill" : "square")
-            Text(ingredient)
-            Text(measurement)
+            Image(systemName: ingredient.isSelected ? "square.fill" : "square")
+            Text(ingredient.label)
+            Text(ingredient.measurement)
             Spacer()
         }.padding([.leading, .trailing ], 75)
             .padding([.top, .bottom], 5)
             .onTapGesture {
-                if isSelected {
-                    isSelected = false
+                if ingredient.isSelected {
+                    ingredient.isSelected = false
                 } else {
-                    isSelected = true
-                    
+                    ingredient.isSelected = true
                 }
             }
     }
@@ -32,6 +33,6 @@ struct RowView: View {
 
 struct RowView_Previews: PreviewProvider {
     static var previews: some View {
-        RowView(isSelected : false, ingredient : "sugar", measurement : "1 cup")
+        RowView(ingredient: Ingredient(label: "sugar", measurement: "1 cup", isSelected: false))
     }
 }

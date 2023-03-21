@@ -10,7 +10,12 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var DessertData = APIManager()
     var body: some View {
-        DessertsView()
+        DessertsView(dessertItemArr: DessertData.dessertItemArr, DessertData: self.DessertData)
+            .onAppear{
+                DessertData.fetchDessertItemsArr{ (status) in
+                    print("got data")
+                }
+            }
     }
 }
 
