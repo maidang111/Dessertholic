@@ -8,27 +8,27 @@
 import Foundation
 
 class NetworkManager : NSObject {
-    private var api = "https://themealdb.com/api/json/v1/1/"
-    private var dessertCatergory = "filter.php?c=Dessert"
-    private var lookUp = "lookup.php?i="
+    private let api = "https://themealdb.com/api/json/v1/1/"
+    private let dessertCatergory = "filter.php?c=Dessert"
+    private let lookUp = "lookup.php?i="
     static let shared = NetworkManager()
     
     func fetchDessertItemsArr(onSuccess : @escaping (Bool, [DessertItem]) -> Void) {
         
-        // creating url
+        // This attempts to create a url
         guard let url = URL(string: "\(api)\(dessertCatergory)") else {
             print("couldn't convert to url")
             return
         }
         
-        //fetching data
+        // This fetches data from vaild URL
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let data = data, error == nil else {
                 print("\(error!)")
                 return
             }
             
-            // if data is valid return: (true, [DessertItem]), else: (false, [])
+            // If data is valid return: (true, [DessertItem]), else: (false, [])
             var dessertlist : DessertsList?
             do {
                 dessertlist = try JSONDecoder().decode(DessertsList.self, from: data)
@@ -41,21 +41,20 @@ class NetworkManager : NSObject {
                     print("got dessert data")
                 }
             } catch {
-                onSuccess(false, [])
-                print("could not convert data to Objects")
+                print("Failed to parse JSON into DessertItem")
             }
         }.resume()
     }
     
     func fetchDessertInfo(dessertID : String, onSuccess : @escaping (Bool, [DessertDetail]) -> Void) {
         
-        // creating url
+        // Creating url
         guard let url = URL(string: "\(api)\(lookUp)\(dessertID)") else {
             print("couldn't convert to url")
             return
         }
         
-        //fetching data
+        // Fetching data
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let data = data, error == nil else {
                 print("\(error!)")
@@ -64,7 +63,7 @@ class NetworkManager : NSObject {
             
             var dessertInfo : Dessert?
             
-            // if data is valid return: (true, [DessertItem]), else: (false, [])
+            // If data is valid return: (true, [DessertItem]), else: (false, [])
             do {
                 dessertInfo = try JSONDecoder().decode(Dessert.self, from: data)
                 DispatchQueue.main.sync {
@@ -73,7 +72,6 @@ class NetworkManager : NSObject {
                     onSuccess(true, tempDessertDetailArr)
                 }
             } catch {
-                onSuccess(false, [])
                 print("could not convert data to Objects")
             }
         }.resume()

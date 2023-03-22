@@ -11,7 +11,7 @@ struct InstructionView: View {
     let dessert : DessertDetail
     var body: some View {
         VStack {
-            Image("wiskandbowl")
+            Image("Baking")
                 .padding(.top)
             Text("---Instruction---")
                 .multilineTextAlignment(.center)

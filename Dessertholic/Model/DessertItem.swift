@@ -7,7 +7,7 @@
 
 import Foundation
 
-//basic dessert information
+// Use to store basic dessert information
 struct DessertsList : Hashable, Codable {
     let meals : [DessertItem]
 }
@@ -18,7 +18,7 @@ struct DessertItem : Hashable, Codable {
     let idMeal : String
 }
 
-//detailed dessert information
+// Use to store detailed dessert information
 struct Dessert : Hashable, Codable {
     let meals : [DessertDetail]
 }

@@ -12,13 +12,13 @@ final class DessertholicTests: XCTestCase {
     let item = DessertViewModel()
     let details = LookUpViewModel()
     
-    // checks if ViewModels are throwing errors
+    // This checks if ViewModels are throwing errors
     func test_noErrors_Thrown() {
         XCTAssertNoThrow(item.fetchDessertItemsArr())
         XCTAssertNoThrow(details.fetchDessertDetailsArr(dessertID: "53049"))
     }
     
-    //checks if fetching array of DessertItem returns expect array
+    // This checks if fetching array of DessertItem returns expect array
     func test_fetch_Desserts_From_API() async throws {
         item.fetchDessertItemsArr()
         sleep(1)
@@ -33,7 +33,7 @@ final class DessertholicTests: XCTestCase {
         
     }
     
-    //checks if fetching dessertDetails returns expected variables
+    // This checks if fetching dessertDetails returns expected variables
     func test_fetch_Dessert_Details() async throws {
         details.fetchDessertDetailsArr(dessertID: "52893")
         sleep(1)

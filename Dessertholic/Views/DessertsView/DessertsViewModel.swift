@@ -8,18 +8,18 @@
 import Foundation
 
 final class DessertViewModel : ObservableObject {
-    //stores DessertItem fetchedfrom NetworkManager
+    // This stores DessertItem fetched from NetworkManager
     @Published var dessertItemArr : [DessertItem] = []
     @Published private(set) var isLoading : Bool = false
     
     func fetchDessertItemsArr() {
         isLoading = true
         NetworkManager.shared.fetchDessertItemsArr { status, dessertItem in
-            switch status {
-            case status :
+            if status {
                 self.dessertItemArr = dessertItem
                 print(self.dessertItemArr)
-            default : print("couldn't fetch dessertItemArray")
+            } else {
+                print("couldn't fetch dessertItemArray")
             }
         }
         isLoading = false
