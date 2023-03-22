@@ -22,7 +22,7 @@ class NetworkManager : NSObject {
         }
         
         // This fetches data from vaild URL
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
                 print("\(error!)")
                 return
@@ -55,7 +55,7 @@ class NetworkManager : NSObject {
         }
         
         // Fetching data
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
                 print("\(error!)")
                 return
